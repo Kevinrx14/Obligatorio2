@@ -79,4 +79,27 @@ public class Auxiliar {
 
         return devolucion;
     }
+    
+    //Menu principal
+    public int menu() {
+        int opcion;
+
+        System.out.println("Digite la opcion que desea");
+        System.out.println("-----------------------------");
+        System.out.println("1) Registrar cliente");
+        System.out.println("2) Registrar mensajero");
+        System.out.println("3) Registrar plato");
+        System.out.println("4) Registrar pedido");
+        System.out.println("5) Consulta pedidos");
+        System.out.println("6) Menu");
+        System.out.println("7) Planilla de envio");
+        System.out.println("8) Consulta de tipo");
+        System.out.println("9) Salir");
+        System.out.println("-----------------------------");
+        System.out.print("Opcion: ");
+
+        opcion = ingresarNumero("menu");
+
+        return opcion;
+    }
 }
