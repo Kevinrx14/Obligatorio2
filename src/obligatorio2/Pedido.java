@@ -1,6 +1,6 @@
 //Kevin Rinaldi (240179)
 //Ex compañero Andres Martinez (184534)
-package prueba;
+package obligatorio2;
 
 public class Pedido {
 

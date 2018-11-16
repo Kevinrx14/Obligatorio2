@@ -1,29 +1,23 @@
 //Kevin Rinaldi (240179)
 //Ex compañero Andres Martinez (184534)
-package prueba;
+package obligatorio2;
 
-public class Cliente {
-
+public class Mensajero {
     private String nombre;
     private String direccion;
-    private int barrio;
-
-    //Constructor de cliente
-    public Cliente() {
+    private String ci;
+   
+    public Mensajero() {
         this.setNombre(nombre);
         this.setDireccion(direccion);
-        this.setBarrio(barrio);
+        this.setCi(ci);
     }
-    public Cliente(String unNombre, String unaDireccion, int unBarrio) {
+    public Mensajero(String unNombre, String unaDireccion, String unaCi) {
         this.setNombre(unNombre);
         this.setDireccion(unaDireccion);
-        this.setBarrio(unBarrio);
+        this.setCi(unaCi);
     }
-
-    Cliente(String nombreMensajero, String direccionMensajero, String ciMensajero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -40,18 +34,21 @@ public class Cliente {
         direccion = unaDireccion;
     }
 
-    public int getBarrio() {
-        return barrio;
+    public String getCi() {
+        return ci;
     }
 
-    public void setBarrio(int unBarrio) {
-        barrio = unBarrio;
+    public void setCi(String unaCi) {
+        ci = unaCi.charAt(0) + "." + 
+             unaCi.substring(1, 4) + "." + 
+             unaCi.substring(4, 7) + "-" + 
+             unaCi.charAt(7);
     }
 
     @Override
     public String toString() {
         return "Nombre: " + this.getNombre()
                 + "\n" + "Direccion: " + this.getDireccion()
-                + "\n" + "Numero de barrio: " + this.getBarrio();
+                + "\n" + "CI: " + this.getCi();
     }
 }
