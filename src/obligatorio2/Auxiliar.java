@@ -24,4 +24,25 @@ public class Auxiliar {
         return datoIngresado;
     }
     
+        //Metodo para ingresar numero
+    public int ingresarNumero(String aIngresar) {
+        Scanner input = new Scanner(System.in);
+        int datoIngresado;
+        boolean verificador;
+        
+        do {
+            verificador = true;
+            
+            try {
+                datoIngresado = input.nextInt();
+                input.nextLine();
+            } //Si el dato ingresado no es un int entra en la exception, 
+            //muestra el mensaje de error y la variable se setea en 0
+            catch (InputMismatchException exception) {
+                System.out.println("El valor ingresado no es numerico");
+                datoIngresado = 0;
+            }
+        } while(verificador == false);
+        return datoIngresado;
+    }
 }
