@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Kevin Rinaldi (240179)
+//Ex compañero Andres Martinez (184534)
 package obligatorio2;
+import java.util.*;
 
-/**
- *
- * @author kevin
- */
 public class Prueba {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String args[]) {
+        Auxiliar auxiliar = new Auxiliar();
+        Rotiseria rotiseria = new Rotiseria();
     }
-    
 }
