@@ -45,4 +45,38 @@ public class Auxiliar {
         } while(verificador == false);
         return datoIngresado;
     }
+    
+    //Metodo para ingresar un booleano
+    public boolean ingresarBoolean() {
+        Scanner input = new Scanner(System.in);
+        boolean devolucion = false;
+        boolean verificador;
+        String datoIngresado;
+
+        //Verifica si se ingreso si o no
+        do {
+            verificador = true;
+
+            datoIngresado = input.nextLine();
+            datoIngresado = datoIngresado.toLowerCase();
+
+            switch (datoIngresado) {
+                case "si":
+                    devolucion = true;
+                    break;
+
+                case "no":
+                    devolucion = false;
+                    break;
+
+                default:
+                    System.out.println("El valor ingresado no es correcto, por favor ingrese Si/No");
+                    System.out.println("\n");
+                    verificador = false;
+                    break;
+            }
+        } while (verificador == false);
+
+        return devolucion;
+    }
 }
