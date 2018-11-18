@@ -26,6 +26,14 @@ public class Prueba {
         boolean verificadorMenuPrincipal = true;
         boolean aptoCeliacoPlato;
         
+        rotiseria.getListaClientes().add(new Cliente ("Kevin", "Bv Espana", 5));
+        rotiseria.getListaClientes().add(new Cliente ("Juan", "Bv Artigas", 2));
+        rotiseria.getListaClientes().add(new Cliente ("Pedro", "Chana", 1));
+        rotiseria.getListaMensajeros().add(new Mensajero ("John Doe", "Chana", "12345678"));
+        rotiseria.getListaMensajeros().add(new Mensajero ("Jane Doe", "Bv Espana", "23456789"));
+        rotiseria.getListaPlatos().add(new Plato ("Hamburguesa", 250, 800, 6, false));
+        rotiseria.getListaPlatos().add(new Plato ("Sopa", 100, 200, 2, true));
+        
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
         do {
             opcionElegida = auxiliar.menu();
