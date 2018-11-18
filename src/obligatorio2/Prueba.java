@@ -17,7 +17,12 @@ public class Prueba {
         int barrioCliente;
         int costoPlato;
         int caloriaPlato;
-        int tipoPlato;                    
+        int tipoPlato;
+        int indicePlato;
+        int indiceCliente;
+        int diaPedido;
+        int horaPedido;
+        int indiceMensajero;
         boolean verificadorMenuPrincipal = true;
         boolean aptoCeliacoPlato;
         
@@ -35,7 +40,7 @@ public class Prueba {
                     System.out.println("Ingrese barrio del cliente (1 - 10)");
                     barrioCliente = auxiliar.ingresarNumero("barrio");
                     
-                    rotiseria.getListaCliente().add(new Cliente (nombreCliente, direccionCliente, barrioCliente));                    
+                    rotiseria.getListaClientes().add(new Cliente (nombreCliente, direccionCliente, barrioCliente));                    
                     break;
                   
                 //Registrar de mensajero
@@ -47,7 +52,7 @@ public class Prueba {
                     System.out.println("Ingrese ci del mensajero");
                     ciMensajero = auxiliar.ingresarTexto();
                     
-                    rotiseria.getListaMensajero().add(new Mensajero (nombreMensajero, direccionMensajero, ciMensajero));
+                    rotiseria.getListaMensajeros().add(new Mensajero (nombreMensajero, direccionMensajero, ciMensajero));
                     break;
 
                 //Registrar de plato
@@ -63,12 +68,29 @@ public class Prueba {
                     System.out.println("Es apto para celiacos (Si/No)");
                     aptoCeliacoPlato = auxiliar.ingresarBoolean();
                     
-                    rotiseria.getListaPlato().add(new Plato (descripcionPlato, costoPlato, caloriaPlato, tipoPlato, aptoCeliacoPlato));
+                    rotiseria.getListaPlatos().add(new Plato (descripcionPlato, costoPlato, caloriaPlato, tipoPlato, aptoCeliacoPlato));
                     break;
 
                 //Registrar de pedido
                 case 4:
-                   
+                    indicePlato = rotiseria.seleccionarOpcionLista(rotiseria.getListaPlatos(), "Menu");
+                    indiceCliente = rotiseria.seleccionarOpcionLista(rotiseria.getListaClientes(), "Clientes");
+                    System.out.println("Ingresar dia del pedido (1 - 31)");
+                    diaPedido = auxiliar.ingresarNumero("dia");  
+                    System.out.println("Ingresar hora de la entrega (8 - 18)");
+                    horaPedido = auxiliar.ingresarNumero("hora");
+                    indiceMensajero = rotiseria.seleccionarOpcionLista(rotiseria.getListaMensajeros(), "Mensajeros");
+                    
+                    rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(indicePlato),
+                            rotiseria.getListaClientes().get(indiceCliente),
+                            diaPedido,
+                            horaPedido,
+                            rotiseria.getListaMensajeros().get(indiceMensajero))
+                    );
+                    
+                    System.out.println("Pedido realizado con exito");
+                    System.out.println("\n");
+                    
                     break;
 
                 //Consulta pedidos
