@@ -7,7 +7,10 @@ public class Prueba {
     public static void main(String args[]) {
         Auxiliar auxiliar = new Auxiliar();
         Rotiseria rotiseria = new Rotiseria();
+        String nombreCliente;
+        String direccionCliente;
         int opcionElegida;
+        int barrioCliente;
         boolean verificadorMenuPrincipal = true;
         
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
@@ -17,7 +20,14 @@ public class Prueba {
             switch (opcionElegida) {
                 //Registrar de cliente
                 case 1:
-                                    
+                    System.out.println("Ingrese nombre del cliente");
+                    nombreCliente = auxiliar.ingresarTexto();
+                    System.out.println("Ingrese direccion del cliente");
+                    direccionCliente = auxiliar.ingresarTexto();
+                    System.out.println("Ingrese barrio del cliente (1 - 10)");
+                    barrioCliente = auxiliar.ingresarNumero("barrio");
+                    
+                    rotiseria.getListaCliente().add(new Cliente (nombreCliente, direccionCliente, barrioCliente));                    
                     break;
                   
                 //Registrar de mensajero
