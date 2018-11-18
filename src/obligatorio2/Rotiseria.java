@@ -132,4 +132,9 @@ public class Rotiseria {
         }
         
     }
+    
+    public ArrayList<Plato> ordenarPlatos() {
+        Collections.sort(this.getListaPlatos());
+        return this.getListaPlatos();
+    }
 }

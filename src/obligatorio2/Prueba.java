@@ -33,6 +33,7 @@ public class Prueba {
         rotiseria.getListaMensajeros().add(new Mensajero ("Jane Doe", "Bv Espana", "23456789"));
         rotiseria.getListaPlatos().add(new Plato ("Hamburguesa", 250, 800, 6, false));
         rotiseria.getListaPlatos().add(new Plato ("Sopa", 100, 200, 2, true));
+        rotiseria.getListaPlatos().add(new Plato ("Ensalada", 50, 100, 3, true));
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(0),
                             rotiseria.getListaClientes().get(0),
                             11,
@@ -128,7 +129,8 @@ public class Prueba {
                     
                 //Menu de platos
                 case 6:
-                    
+                    rotiseria.ordenarPlatos();
+                    rotiseria.mostrarContenido(rotiseria.getListaPlatos(), "Menu");
                     break;
                     
                 //Planilla de envio
