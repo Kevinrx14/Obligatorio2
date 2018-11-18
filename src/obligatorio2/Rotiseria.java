@@ -116,11 +116,11 @@ public class Rotiseria {
             }
             if (sumaDePedidos > masPedido) {
                 indicesMasPedidos.clear();
-                indicesMasPedidos.add(new Integer(i));
+                indicesMasPedidos.add(i);
                 masPedido = sumaDePedidos;
             } else {
                 if (sumaDePedidos == masPedido) {
-                    indicesMasPedidos.add(new Integer(i));
+                    indicesMasPedidos.add(i);
                 }
             }
             sumaDePedidos = 0;
