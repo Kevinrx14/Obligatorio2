@@ -156,4 +156,35 @@ public class Rotiseria {
         this.ordenarLista(pedidosDelDia);
         this.mostrarContenido(pedidosDelDia, "Pedidos");
     }
+    
+    public void consultaTipo(){
+        int indexTipo;
+        int i;
+        int[] tipo = new int[8];
+        int mayor = 0;
+        int largoLista;
+        
+        if(!this.getListaPedidos().isEmpty()) {
+            largoLista = this.getListaPedidos().size();
+            //Llenar el array tipo
+            for(i = 0; i < largoLista; i++){
+                indexTipo = (this.getListaPedidos().get(i).getPlato().getTipo())-1;
+                tipo[indexTipo] += 1;
+            }
+            //Guardar el mas pedido
+            for(i = 0; i < 8; i++) {
+                if (tipo[i] > mayor) {
+                    mayor = tipo[i];
+                }
+            }
+            //Mostrar el tipo/s mas pedido/s
+            for(i = 0; i < 8; i++) {
+                if (tipo[i] == mayor) {
+                    System.out.println("El tipo de plato " + (i+1) + " fue el mas pedido");
+                }
+            }
+        } else {
+            System.out.println("No hay pedidos registrados");
+        }
+    }
 }

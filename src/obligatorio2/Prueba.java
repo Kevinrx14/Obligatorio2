@@ -46,7 +46,7 @@ public class Prueba {
                             18,
                             rotiseria.getListaMensajeros().get(0))
                     );
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
                             rotiseria.getListaClientes().get(2),
                             11,                            
                             14,
@@ -143,7 +143,7 @@ public class Prueba {
                     
                 //Consulta de tipo
                 case 8:
-                    
+                    rotiseria.consultaTipo();
                     break;
                      
                 //Terminar
