@@ -130,11 +130,30 @@ public class Rotiseria {
         for (i = 0; i < indicesMasPedidos.size(); i++) {
             System.out.println(this.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
         }
-        
     }
     
-    public ArrayList<Plato> ordenarPlatos() {
-        Collections.sort(this.getListaPlatos());
-        return this.getListaPlatos();
+    public ArrayList ordenarLista(ArrayList unaLista) {
+        Collections.sort(unaLista);
+        return unaLista;
+    }
+    
+    public void planillaEnvios(int indiceMensajero, int unDia) {
+        ArrayList<Pedido> pedidosDelDia = new ArrayList<>();
+        int i;
+        String ciMensajero = this.getListaMensajeros().get(indiceMensajero).getCi();
+        
+        for(i = 0; i < this.getListaPedidos().size(); i++) {
+            if(this.getListaPedidos().get(i).getMensajero().getCi().equals(ciMensajero) && this.getListaPedidos().get(i).getDia() == unDia) {
+                pedidosDelDia.add(new Pedido(this.getListaPedidos().get(i).getPlato(),
+                            this.getListaPedidos().get(i).getCliente(),
+                            this.getListaPedidos().get(i).getDia(),
+                            this.getListaPedidos().get(i).getHora(),
+                            this.getListaPedidos().get(i).getMensajero())
+                    );
+            }
+        }
+        
+        this.ordenarLista(pedidosDelDia);
+        this.mostrarContenido(pedidosDelDia, "Pedidos");
     }
 }

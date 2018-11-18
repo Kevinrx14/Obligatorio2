@@ -44,13 +44,13 @@ public class Prueba {
                             rotiseria.getListaClientes().get(1),
                             11,
                             18,
-                            rotiseria.getListaMensajeros().get(1))
+                            rotiseria.getListaMensajeros().get(0))
                     );
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
                             rotiseria.getListaClientes().get(2),
                             11,                            
                             14,
-                            rotiseria.getListaMensajeros().get(1))
+                            rotiseria.getListaMensajeros().get(0))
                     );
         
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
@@ -129,13 +129,16 @@ public class Prueba {
                     
                 //Menu de platos
                 case 6:
-                    rotiseria.ordenarPlatos();
+                    rotiseria.ordenarLista(rotiseria.getListaPlatos());
                     rotiseria.mostrarContenido(rotiseria.getListaPlatos(), "Menu");
                     break;
                     
                 //Planilla de envio
                 case 7:
-                    
+                    indiceMensajero = rotiseria.seleccionarOpcionLista(rotiseria.getListaMensajeros(), "Mensajeros");
+                    System.out.println("Ingrese dia de los pedidos");
+                    diaPedido = auxiliar.ingresarNumero("dia");
+                    rotiseria.planillaEnvios(indiceMensajero, diaPedido);
                     break;
                     
                 //Consulta de tipo
