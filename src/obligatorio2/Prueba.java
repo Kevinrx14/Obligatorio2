@@ -9,6 +9,9 @@ public class Prueba {
         Rotiseria rotiseria = new Rotiseria();
         String nombreCliente;
         String direccionCliente;
+        String nombreMensajero;
+        String direccionMensajero;
+        String ciMensajero;
         int opcionElegida;
         int barrioCliente;
         boolean verificadorMenuPrincipal = true;
@@ -32,7 +35,14 @@ public class Prueba {
                   
                 //Registrar de mensajero
                 case 2:
+                    System.out.println("Ingrese nombre del mensajero");
+                    nombreMensajero = auxiliar.ingresarTexto();
+                    System.out.println("Ingrese direccion del mensajero");
+                    direccionMensajero = auxiliar.ingresarTexto();
+                    System.out.println("Ingrese ci del mensajero");
+                    ciMensajero = auxiliar.ingresarTexto();
                     
+                    rotiseria.getListaMensajero().add(new Mensajero (nombreMensajero, direccionMensajero, ciMensajero));
                     break;
 
                 //Registrar de plato
