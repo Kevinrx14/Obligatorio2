@@ -12,9 +12,14 @@ public class Prueba {
         String nombreMensajero;
         String direccionMensajero;
         String ciMensajero;
+        String descripcionPlato;
         int opcionElegida;
         int barrioCliente;
+        int costoPlato;
+        int caloriaPlato;
+        int tipoPlato;                    
         boolean verificadorMenuPrincipal = true;
+        boolean aptoCeliacoPlato;
         
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
         do {
@@ -47,7 +52,18 @@ public class Prueba {
 
                 //Registrar de plato
                 case 3:
+                    System.out.println("Ingrese plato");
+                    descripcionPlato = auxiliar.ingresarTexto();
+                    System.out.println("Ingrese el costo del plato");
+                    costoPlato = auxiliar.ingresarNumero("costo");
+                    System.out.println("Ingrese las calorias del plato (1 - 900)");
+                    caloriaPlato = auxiliar.ingresarNumero("caloria");
+                    System.out.println("Ingrese el tipo (1 - 8)");
+                    tipoPlato = auxiliar.ingresarNumero("tipo");
+                    System.out.println("Es apto para celiacos (Si/No)");
+                    aptoCeliacoPlato = auxiliar.ingresarBoolean();
                     
+                    rotiseria.getListaPlato().add(new Plato (descripcionPlato, costoPlato, caloriaPlato, tipoPlato, aptoCeliacoPlato));
                     break;
 
                 //Registrar de pedido
