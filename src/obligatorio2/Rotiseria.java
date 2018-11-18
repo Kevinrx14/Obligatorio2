@@ -86,4 +86,50 @@ public class Rotiseria {
         }
     }
     
+    public void platosMasPedidos(int unDia) {
+        ArrayList<Pedido> pedidosPorDia = new ArrayList<>();
+        ArrayList<Integer> indicesMasPedidos = new ArrayList<>();
+        int i;
+        int masPedido = 0;
+        int sumaDePedidos =0;      
+        
+        //Lleno array temporal con todos los pedidos del dia seleccionado
+        for(i = 0; i < this.getListaPedidos().size(); i++) {
+            if(this.getListaPedidos().get(i).getDia() == unDia) {
+                pedidosPorDia.add(new Pedido(this.getListaPedidos().get(i).getPlato(),
+                            this.getListaPedidos().get(i).getCliente(),
+                            this.getListaPedidos().get(i).getDia(),
+                            this.getListaPedidos().get(i).getHora(),
+                            this.getListaPedidos().get(i).getMensajero())
+                    );
+            }
+        }
+        
+        //Recorro todos los platos
+        for (i = 0; i < this.getListaPlatos().size(); i++) {
+            //Recorro los platos que se pidieron el dia ingresado
+            for (int x = 0; x < pedidosPorDia.size(); x++) {
+                //Sumo todos los pedidos del plato en i
+                if (this.getListaPlatos().get(i).getCodigo().equals(pedidosPorDia.get(x).getPlato().getCodigo())) {
+                    sumaDePedidos++;
+                }
+            }
+            if (sumaDePedidos > masPedido) {
+                indicesMasPedidos.clear();
+                indicesMasPedidos.add(new Integer(i));
+                masPedido = sumaDePedidos;
+            } else {
+                if (sumaDePedidos == masPedido) {
+                    indicesMasPedidos.add(new Integer(i));
+                }
+            }
+            sumaDePedidos = 0;
+        }
+                System.out.println(indicesMasPedidos.size());
+        System.out.println("El plato/s mas pedido/s el dia " + unDia + " es/son:");
+        for (i = 0; i < indicesMasPedidos.size(); i++) {
+            System.out.println(this.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
+        }
+        
+    }
 }

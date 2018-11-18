@@ -33,6 +33,24 @@ public class Prueba {
         rotiseria.getListaMensajeros().add(new Mensajero ("Jane Doe", "Bv Espana", "23456789"));
         rotiseria.getListaPlatos().add(new Plato ("Hamburguesa", 250, 800, 6, false));
         rotiseria.getListaPlatos().add(new Plato ("Sopa", 100, 200, 2, true));
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(0),
+                            rotiseria.getListaClientes().get(0),
+                            11,
+                            12,
+                            rotiseria.getListaMensajeros().get(0))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
+                            rotiseria.getListaClientes().get(1),
+                            11,
+                            18,
+                            rotiseria.getListaMensajeros().get(1))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
+                            rotiseria.getListaClientes().get(2),
+                            11,                            
+                            14,
+                            rotiseria.getListaMensajeros().get(1))
+                    );
         
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
         do {
@@ -103,7 +121,9 @@ public class Prueba {
 
                 //Consulta pedidos
                 case 5:
-                    
+                    System.out.println("Ingrese el dia de un pedido");
+                    diaPedido = auxiliar.ingresarNumero("dia");
+                    rotiseria.platosMasPedidos(diaPedido);
                     break;
                     
                 //Menu de platos
