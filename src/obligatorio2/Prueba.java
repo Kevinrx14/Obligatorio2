@@ -63,7 +63,7 @@ public class Prueba {
                     nombreCliente = auxiliar.ingresarTexto();
                     System.out.println("Ingrese direccion del cliente");
                     direccionCliente = auxiliar.ingresarTexto();
-                        System.out.println("Ingrese barrio del cliente (1 - 10)");
+                    System.out.println("Ingrese barrio del cliente (1 - 10)");
                     barrioCliente = auxiliar.ingresarNumero("barrio");
                     
                     rotiseria.getListaClientes().add(new Cliente (nombreCliente, direccionCliente, barrioCliente));      
