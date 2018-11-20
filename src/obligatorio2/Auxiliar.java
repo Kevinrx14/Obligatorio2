@@ -19,9 +19,7 @@ public class Auxiliar {
                 System.out.println("Por favor ingrese un texto");
                 verificador = false;
             }
-        } while (verificador == false);
-        System.out.println("OK");
-        
+        } while (verificador == false);        
 
         return datoIngresado;
     }
@@ -90,7 +88,6 @@ public class Auxiliar {
                     break;
             }
         } while(verificador == false);
-        System.out.println("OK");
         
         return datoIngresado;
     }
@@ -125,7 +122,6 @@ public class Auxiliar {
                     break;
             }
         } while (verificador == false);
-        System.out.println("OK");
         
         return devolucion;
     }
