@@ -63,10 +63,12 @@ public class Prueba {
                     nombreCliente = auxiliar.ingresarTexto();
                     System.out.println("Ingrese direccion del cliente");
                     direccionCliente = auxiliar.ingresarTexto();
-                    System.out.println("Ingrese barrio del cliente (1 - 10)");
+                        System.out.println("Ingrese barrio del cliente (1 - 10)");
                     barrioCliente = auxiliar.ingresarNumero("barrio");
                     
-                    rotiseria.getListaClientes().add(new Cliente (nombreCliente, direccionCliente, barrioCliente));                    
+                    rotiseria.getListaClientes().add(new Cliente (nombreCliente, direccionCliente, barrioCliente));      
+                    System.out.println("Cliente ingresado");
+                    System.out.println("\n");
                     break;
                   
                 //Registrar de mensajero
@@ -79,6 +81,8 @@ public class Prueba {
                     ciMensajero = auxiliar.ingresarTexto();
                     
                     rotiseria.getListaMensajeros().add(new Mensajero (nombreMensajero, direccionMensajero, ciMensajero));
+                    System.out.println("Mensajero ingresado");
+                    System.out.println("\n");
                     break;
 
                 //Registrar de plato
@@ -95,6 +99,8 @@ public class Prueba {
                     aptoCeliacoPlato = auxiliar.ingresarBoolean();
                     
                     rotiseria.getListaPlatos().add(new Plato (descripcionPlato, costoPlato, caloriaPlato, tipoPlato, aptoCeliacoPlato));
+                    System.out.println("Plato ingresado");
+                    System.out.println("\n");
                     break;
 
                 //Registrar de pedido
@@ -116,7 +122,6 @@ public class Prueba {
                     
                     System.out.println("Pedido realizado con exito");
                     System.out.println("\n");
-                    
                     break;
 
                 //Consulta pedidos
