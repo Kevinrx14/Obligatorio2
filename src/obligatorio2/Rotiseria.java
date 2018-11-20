@@ -46,7 +46,7 @@ public class Rotiseria {
     public int seleccionarOpcionLista(ArrayList unaLista, String tipoLista) {
         int opcion;
         int contadorLista;
-
+        
         contadorLista = unaLista.size();
         mostrarContenido(unaLista, tipoLista);
         switch (tipoLista) {
@@ -125,7 +125,7 @@ public class Rotiseria {
             }
             sumaDePedidos = 0;
         }
-                System.out.println(indicesMasPedidos.size());
+
         System.out.println("El plato/s mas pedido/s el dia " + unDia + " es/son:");
         for (i = 0; i < indicesMasPedidos.size(); i++) {
             System.out.println(this.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
@@ -142,19 +142,23 @@ public class Rotiseria {
         int i;
         String ciMensajero = this.getListaMensajeros().get(indiceMensajero).getCi();
         
-        for(i = 0; i < this.getListaPedidos().size(); i++) {
-            if(this.getListaPedidos().get(i).getMensajero().getCi().equals(ciMensajero) && this.getListaPedidos().get(i).getDia() == unDia) {
-                pedidosDelDia.add(new Pedido(this.getListaPedidos().get(i).getPlato(),
-                            this.getListaPedidos().get(i).getCliente(),
-                            this.getListaPedidos().get(i).getDia(),
-                            this.getListaPedidos().get(i).getHora(),
-                            this.getListaPedidos().get(i).getMensajero())
-                    );
+        if(!this.getListaPedidos().isEmpty()) {
+            for(i = 0; i < this.getListaPedidos().size(); i++) {
+                if(this.getListaPedidos().get(i).getMensajero().getCi().equals(ciMensajero) && this.getListaPedidos().get(i).getDia() == unDia) {
+                    pedidosDelDia.add(new Pedido(this.getListaPedidos().get(i).getPlato(),
+                                this.getListaPedidos().get(i).getCliente(),
+                                this.getListaPedidos().get(i).getDia(),
+                                this.getListaPedidos().get(i).getHora(),
+                                this.getListaPedidos().get(i).getMensajero())
+                        );
+                }
             }
+
+            this.ordenarLista(pedidosDelDia);
+            this.mostrarContenido(pedidosDelDia, "Pedidos");
+        } else {
+            System.out.println("No hay pedidos registrados");
         }
-        
-        this.ordenarLista(pedidosDelDia);
-        this.mostrarContenido(pedidosDelDia, "Pedidos");
     }
     
     public void consultaTipo(){
