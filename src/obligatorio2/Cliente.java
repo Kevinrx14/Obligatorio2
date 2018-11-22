@@ -10,9 +10,9 @@ public class Cliente {
 
     //Constructor de cliente
     public Cliente() {
-        this.setNombre(nombre);
-        this.setDireccion(direccion);
-        this.setBarrio(barrio);
+        this.setNombre("nombre");
+        this.setDireccion("direccio");
+        this.setBarrio(1);
     }
     public Cliente(String unNombre, String unaDireccion, int unBarrio) {
         this.setNombre(unNombre);
