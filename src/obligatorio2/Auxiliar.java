@@ -19,7 +19,7 @@ public class Auxiliar {
                 System.out.println("Por favor ingrese un texto");
                 verificador = false;
             }
-        } while (verificador == false);
+        } while (verificador == false);        
 
         return datoIngresado;
     }
@@ -42,7 +42,53 @@ public class Auxiliar {
                 System.out.println("El valor ingresado no es numerico");
                 datoIngresado = 0;
             }
+            
+            switch (aIngresar) {
+                case "barrio":
+                    //Chequeo que no sea menor que 1 o mayor que 10, si lo es se muestra mensaje de error
+                    if (datoIngresado < 1 || datoIngresado > 10) {
+                        System.out.println("Por favor ingrese un barrio entre 1 y 10");
+                        verificador = false;
+                    }
+                    break;
+                    
+                case "caloria":
+                    if (datoIngresado < 1 || datoIngresado > 900) {
+                        System.out.println("Por favor ingrese calorias entre 1 y 900");
+                        verificador = false;
+                    }
+                    break;
+                    
+                case "tipo":
+                    if (datoIngresado < 1 || datoIngresado > 8) {
+                        System.out.println("Por favor ingrese un tipo entre 1 y 8");
+                        verificador = false;
+                    }
+                    break;
+                    
+                case "costo":
+                    if (datoIngresado < 1) {
+                        System.out.println("Por favor ingrese un costo mayor a 0");
+                        verificador = false;
+                    }
+                    break;
+                    
+                case "dia":
+                    if (datoIngresado < 1 || datoIngresado > 31) {
+                        System.out.println("Por favor ingrese un dia entre 1 y 31");
+                        verificador = false;
+                    }
+                    break;
+                    
+                case "hora":
+                    if (datoIngresado < 8 || datoIngresado > 18) {
+                        System.out.println("Por favor ingrese una hora entre 8 y 18");
+                        verificador = false;
+                    }
+                    break;
+            }
         } while(verificador == false);
+        
         return datoIngresado;
     }
     
@@ -76,7 +122,7 @@ public class Auxiliar {
                     break;
             }
         } while (verificador == false);
-
+        
         return devolucion;
     }
     

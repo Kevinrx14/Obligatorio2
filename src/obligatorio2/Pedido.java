@@ -2,7 +2,7 @@
 //Ex compañero Andres Martinez (184534)
 package obligatorio2;
 
-public class Pedido {
+public class Pedido implements Comparable<Pedido>{
 
     private Plato plato;
     private Cliente cliente;
@@ -79,4 +79,8 @@ public class Pedido {
                 + this.getMensajero();
     }
 
+    @Override
+    public int compareTo(Pedido unPedido) {
+        return this.getCliente().getBarrio() - unPedido.getCliente().getBarrio();
+    }
 }

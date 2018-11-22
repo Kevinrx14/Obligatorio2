@@ -2,7 +2,7 @@
 //Ex compañero Andres Martinez (184534)
 package obligatorio2;
 
-public class Plato {    
+public class Plato implements Comparable<Plato>{    
     private String codigo;
     private String descripcion = "";
     private int costo;
@@ -110,4 +110,10 @@ public class Plato {
                 + "\n" + "Tipo: " + this.getTipo() 
                 + "\n" + "Apto para celiacos: " + this.getAptoCeliaco();
     }
+    
+    @Override
+    public int compareTo(Plato unPlato) {
+        return this.getCodigo().compareTo(unPlato.getCodigo());
+    }
+
 }
