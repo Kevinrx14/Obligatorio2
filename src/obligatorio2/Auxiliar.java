@@ -138,7 +138,7 @@ public class Auxiliar {
         System.out.println("2) Registrar mensajero");
         System.out.println("3) Registrar plato");
         System.out.println("4) Registrar pedido");
-        System.out.println("5) Consulta pedidos");
+        System.out.println("5) Consulta de pedidos");
         System.out.println("6) Menu");
         System.out.println("7) Planilla de envio");
         System.out.println("8) Consulta de tipo");
