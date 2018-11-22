@@ -12,12 +12,12 @@ public class Plato implements Comparable<Plato>{
     
     //Constructor de Plato
     public Plato(){
-        this.setDescripcion(descripcion);
-        this.setCodigo(descripcion);
-        this.setCosto(costo);
-        this.setCaloria(caloria);
-        this.setTipo(tipo);   
-        this.setAptoCeliaco(aptoCeliaco);
+        this.setDescripcion("descripcion");
+        this.setCodigo("descripcion");
+        this.setCosto(1);
+        this.setCaloria(1);
+        this.setTipo(1);   
+        this.setAptoCeliaco(false);
     }
     public Plato(String unaDescripcion, int unCosto, int unaCaloria, int unTipo, boolean apto){
         this.setDescripcion(unaDescripcion);

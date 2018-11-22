@@ -8,9 +8,9 @@ public class Mensajero {
     private String ci;
    
     public Mensajero() {
-        this.setNombre(nombre);
-        this.setDireccion(direccion);
-        this.setCi(ci);
+        this.setNombre("nombre");
+        this.setDireccion("direccion");
+        this.setCi("12345678");
     }
     public Mensajero(String unNombre, String unaDireccion, String unaCi) {
         this.setNombre(unNombre);

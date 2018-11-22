@@ -26,6 +26,22 @@ public class Rotiseria {
         return listaMensajeros;
     }
     
+    public void setMensajero(Mensajero unMensajero) {
+        this.getListaMensajeros().add(unMensajero);
+    }
+    
+    public void setPlato(Plato unPlato) {
+        this.getListaPlatos().add(unPlato);
+    }
+    
+    public void setCliente(Cliente unCliente) {
+        this.getListaClientes().add(unCliente);
+    }
+    
+    public void setPedido(Pedido unPedido) {
+        this.getListaPedidos().add(unPedido);
+    }
+    
     public int ingresarOpcionLista(int contadorLista) {
         int opcion;
         boolean verificador = true;
