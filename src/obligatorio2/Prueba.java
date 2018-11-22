@@ -98,57 +98,52 @@ public class Prueba {
 
                 //Registrar de pedido
                 case 4:
-                    if(!rotiseria.getListaClientes().isEmpty() && !rotiseria.getListaMensajeros().isEmpty() && !rotiseria.getListaPlatos().isEmpty()) {
-                        indicePlato = rotiseria.seleccionarOpcionLista(rotiseria.getListaPlatos(), "Menu");
-                        pedido.setPlato(rotiseria.getListaPlatos().get(indicePlato));
-                        indiceCliente = rotiseria.seleccionarOpcionLista(rotiseria.getListaClientes(), "Clientes");
-                        pedido.setCliente(rotiseria.getListaClientes().get(indiceCliente));
-                        System.out.println("Ingresar dia del pedido (1 - 31)");
-                        pedido.setDia(auxiliar.ingresarNumero("dia"));  
-                        System.out.println("Ingresar hora de la entrega (8 - 18)");
-                        pedido.setHora(auxiliar.ingresarNumero("hora"));
-                        indiceMensajero = rotiseria.seleccionarOpcionLista(rotiseria.getListaMensajeros(), "Mensajeros");
-                        pedido.setMensajero(rotiseria.getListaMensajeros().get(indiceMensajero));
+                    if(!rotiseria.getListaClientes().isEmpty()) {
+                        if(!rotiseria.getListaMensajeros().isEmpty()) {
+                            if(!rotiseria.getListaPlatos().isEmpty()) {
+                                indicePlato = auxiliar.seleccionarOpcionLista(rotiseria.getListaPlatos(), "Menu");
+                                pedido.setPlato(rotiseria.getListaPlatos().get(indicePlato));
+                                indiceCliente = auxiliar.seleccionarOpcionLista(rotiseria.getListaClientes(), "Clientes");
+                                pedido.setCliente(rotiseria.getListaClientes().get(indiceCliente));
+                                System.out.println("Ingresar dia del pedido (1 - 31)");
+                                pedido.setDia(auxiliar.ingresarNumero("dia"));  
+                                System.out.println("Ingresar hora de la entrega (8 - 18)");
+                                pedido.setHora(auxiliar.ingresarNumero("hora"));
+                                indiceMensajero = auxiliar.seleccionarOpcionLista(rotiseria.getListaMensajeros(), "Mensajeros");
+                                pedido.setMensajero(rotiseria.getListaMensajeros().get(indiceMensajero));
 
-                        rotiseria.setPedido(pedido);
-                        System.out.println("Pedido realizado con exito" + "\n");
+                                rotiseria.setPedido(pedido);
+                                System.out.println("Pedido realizado con exito" + "\n");
+                            } else {
+                                System.out.println("No hay platos registrados" + "\n");
+                            }
+                        } else {
+                            System.out.println("No hay mensajeros registrados" + "\n");
+                        }
                     } else {
-                        System.out.println("No hay registros de plato, mensajero y/o cliente" + "\n");
+                        System.out.println("No hay clientes registrados" + "\n");
                     }
                     break;
 
                 //Consulta pedidos
                 case 5:
-                    if(!rotiseria.getListaPedidos().isEmpty()) {
-                        System.out.println("Ingrese el dia de un pedido");
-                        diaPedido = auxiliar.ingresarNumero("dia");
-                        rotiseria.platosMasPedidos(diaPedido);
-                    } else {
-                        System.out.println("No se han realizado pedidos");
-                    }
+                    
                     break;
                     
                 //Menu de platos
                 case 6:
-                    rotiseria.ordenarLista(rotiseria.getListaPlatos());
-                    rotiseria.mostrarContenido(rotiseria.getListaPlatos(), "Menu");
+                    auxiliar.ordenarLista(rotiseria.getListaPlatos());
+                    auxiliar.mostrarContenido(rotiseria.getListaPlatos(), "Menu");
                     break;
                     
                 //Planilla de envio
                 case 7:
-                    if(!rotiseria.getListaMensajeros().isEmpty()) {
-                        indiceMensajero = rotiseria.seleccionarOpcionLista(rotiseria.getListaMensajeros(), "Mensajeros");
-                        System.out.println("Ingrese dia de los pedidos");
-                        diaPedido = auxiliar.ingresarNumero("dia");
-                        rotiseria.planillaEnvios(indiceMensajero, diaPedido);
-                    } else {
-                        System.out.println("No hay mensajeros registrados");
-                    }
+                    auxiliar.mostrarPlanillaEnvio();
                     break;
                     
                 //Consulta de tipo
                 case 8:
-                    rotiseria.consultaTipo();
+                    auxiliar.consultaTipo();
                     break;
                      
                 //Terminar

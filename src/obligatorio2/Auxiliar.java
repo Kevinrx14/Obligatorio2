@@ -4,6 +4,8 @@ package obligatorio2;
 import java.util.*;
 
 public class Auxiliar {
+    Rotiseria rotiseria = new Rotiseria();
+    
     //Metodo para ingresar texto
     public String ingresarTexto() {
         Scanner input = new Scanner(System.in);
@@ -147,5 +149,182 @@ public class Auxiliar {
         opcion = ingresarNumero("menu");
 
         return opcion;
+    }
+    
+    public int ingresarOpcionLista(int contadorLista) {
+        int opcion;
+        boolean verificador = true;
+        
+        do {
+            opcion = ingresarNumero("lista");
+            if (opcion <= contadorLista && opcion > 0) {
+                verificador = false;
+                opcion--;
+            } else {
+                System.out.print("Opcion no valida, por favor ingrese una nueva opcion: ");
+            }
+        } while(verificador == true);
+        
+        return opcion;
+    }
+    
+    public int seleccionarOpcionLista(ArrayList unaLista, String tipoLista) {
+        int opcion;
+        int contadorLista;
+        
+        contadorLista = unaLista.size();
+        mostrarContenido(unaLista, tipoLista);
+        switch (tipoLista) {
+            case "Clientes":
+                System.out.print("Seleccione al cliente: ");
+                break;
+                
+            case "Menu":
+                System.out.print("Seleccione el plato: ");
+                break;
+                
+            case "Mensajeros":
+                System.out.print("Seleccione al mensajero: ");
+                break;
+        }
+        
+        opcion = ingresarOpcionLista(contadorLista);
+            
+        return opcion;
+    }
+    
+    public void mostrarContenido(ArrayList unaLista, String tipoLista) {
+        int contadorLista;
+        int i;
+        
+        if (!unaLista.isEmpty()) {
+            contadorLista = unaLista.size();
+            System.out.println("******** " + tipoLista + " ********");
+            for(i = 0; i < contadorLista; i++){
+                System.out.println("Opcion " + (i+1) + ":");
+                System.out.println(unaLista.get(i));
+                System.out.println("\n");
+            }
+            System.out.println("**************************");
+        } else {
+            System.out.println("No se encontraron registros");
+        }
+    }
+    
+    public void mostrarPlanillaEnvio() {
+        ArrayList<Pedido> pedidosDelDia = new ArrayList<>();
+        int i;
+
+        if(!rotiseria.getListaMensajeros().isEmpty()) {
+            if(!rotiseria.getListaPedidos().isEmpty()) {
+                int indiceMensajero = seleccionarOpcionLista(rotiseria.getListaMensajeros(), "Mensajeros");
+                System.out.println("Ingrese dia de los pedidos");
+                int diaPedido = ingresarNumero("dia");
+                String ciMensajero = rotiseria.getListaMensajeros().get(indiceMensajero).getCi();
+        
+                for(i = 0; i < rotiseria.getListaPedidos().size(); i++) {
+                    Pedido pedido = rotiseria.getListaPedidos().get(i);
+                    if(
+                        pedido.getMensajero().getCi().equals(ciMensajero) && 
+                        pedido.getDia() == diaPedido
+                            ) {
+                        pedidosDelDia.add(pedido);
+                    }
+                }
+        
+                ordenarLista(pedidosDelDia);
+            
+                mostrarContenido(pedidosDelDia, "Pedidos");
+            } else {
+                System.out.println("No hay pedidos registrados");
+            }
+        } else {
+            System.out.println("No hay mensajeros registrados");
+        }
+    }
+    
+    public void mostrarPlatoMasPedido() {
+        ArrayList<Pedido> pedidosPorDia = new ArrayList<>();
+        ArrayList<Integer> indicesMasPedidos = new ArrayList<>();
+        int i;
+        int masPedido = 0;
+        int sumaDePedidos =0;    
+        
+        if(!rotiseria.getListaPedidos().isEmpty()) {
+            System.out.println("Ingrese el dia de un pedido");
+            int diaPedido = ingresarNumero("dia");
+            
+            //Lleno array temporal con todos los pedidos del dia seleccionado
+            for(i = 0; i < rotiseria.getListaPedidos().size(); i++) {
+                if(rotiseria.getListaPedidos().get(i).getDia() == diaPedido) {
+                    pedidosPorDia.add(rotiseria.getListaPedidos().get(i));
+                }
+            }
+
+            //Recorro todos los platos
+            for (i = 0; i < rotiseria.getListaPlatos().size(); i++) {
+                //Recorro los platos que se pidieron el dia ingresado
+                for (int x = 0; x < pedidosPorDia.size(); x++) {
+                    //Sumo todos los pedidos del plato en i
+                    if (rotiseria.getListaPlatos().get(i).getCodigo().equals(pedidosPorDia.get(x).getPlato().getCodigo())) {
+                        sumaDePedidos++;
+                    }
+                }
+                if (sumaDePedidos > masPedido) {
+                    indicesMasPedidos.clear();
+                    indicesMasPedidos.add(i);
+                    masPedido = sumaDePedidos;
+                } else {
+                    if (sumaDePedidos == masPedido) {
+                        indicesMasPedidos.add(i);
+                    }
+                }
+                sumaDePedidos = 0;
+            }
+
+            System.out.println("El plato/s mas pedido/s el dia " + diaPedido + " es/son:");
+            for (i = 0; i < indicesMasPedidos.size(); i++) {
+                System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)));
+            }
+
+        } else {
+            System.out.println("No se han realizado pedidos");
+        }
+    }
+    
+    public void consultaTipo(){
+        int indexTipo;
+        int i;
+        int[] tipo = new int[8];
+        int mayor = 0;
+        int largoLista;
+        
+        if(!rotiseria.getListaPedidos().isEmpty()) {
+            largoLista = rotiseria.getListaPedidos().size();
+            //Llenar el array tipo
+            for(i = 0; i < largoLista; i++){
+                indexTipo = (rotiseria.getListaPedidos().get(i).getPlato().getTipo())-1;
+                tipo[indexTipo] += 1;
+            }
+            //Guardar el mas pedido
+            for(i = 0; i < 8; i++) {
+                if (tipo[i] > mayor) {
+                    mayor = tipo[i];
+                }
+            }
+            //Mostrar el tipo/s mas pedido/s
+            for(i = 0; i < 8; i++) {
+                if (tipo[i] == mayor) {
+                    System.out.println("El tipo de plato " + (i+1) + " fue el mas pedido");
+                }
+            }
+        } else {
+            System.out.println("No hay pedidos registrados");
+        }
+    }
+    
+    public ArrayList ordenarLista(ArrayList unaLista) {
+        Collections.sort(unaLista);
+        return unaLista;
     }
 }
