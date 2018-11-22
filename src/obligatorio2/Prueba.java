@@ -10,14 +10,9 @@ public class Prueba {
         Pedido pedido = new Pedido();
         Cliente cliente = new Cliente();
         Plato plato = new Plato();
-        String nombreCliente;
-        String direccionCliente;
         int opcionElegida;
-        int barrioCliente;
         int indicePlato;
         int indiceCliente;
-        int diaPedido;
-        int horaPedido;
         int indiceMensajero;
         boolean verificadorMenuPrincipal = true;
         
