@@ -122,7 +122,7 @@ public class Prueba {
 
                 //Consulta pedidos
                 case 5:
-                    
+                    auxiliar.mostrarPlatoMasPedido();
                     break;
                     
                 //Menu de platos
