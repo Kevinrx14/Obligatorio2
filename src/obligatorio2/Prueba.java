@@ -19,11 +19,13 @@ public class Prueba {
         rotiseria.getListaClientes().add(new Cliente ("Kevin", "Bv Espana", 5));
         rotiseria.getListaClientes().add(new Cliente ("Juan", "Bv Artigas", 2));
         rotiseria.getListaClientes().add(new Cliente ("Pedro", "Chana", 1));
+        rotiseria.getListaClientes().add(new Cliente ("Juan", "Bv Artigas", 2));
+        rotiseria.getListaClientes().add(new Cliente ("Pedro", "Chana", 1));
         rotiseria.getListaMensajeros().add(new Mensajero ("John Doe", "Chana", "12345678"));
         rotiseria.getListaMensajeros().add(new Mensajero ("Jane Doe", "Bv Espana", "23456789"));
-        rotiseria.getListaPlatos().add(new Plato ("Hamburguesa", 250, 800, 6, false));
-        rotiseria.getListaPlatos().add(new Plato ("Sopa", 100, 200, 2, true));
-        rotiseria.getListaPlatos().add(new Plato ("Ensalada", 50, 100, 3, true));
+        rotiseria.getListaPlatos().add(new Plato ("Sopa", 50, 200, 5, true));
+        rotiseria.getListaPlatos().add(new Plato ("HAMBURGUESA", 150, 874, 8, false));
+        rotiseria.getListaPlatos().add(new Plato ("papas fritas", 74, 498, 1, true));
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(0),
                             rotiseria.getListaClientes().get(0),
                             11,
