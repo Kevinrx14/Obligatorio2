@@ -129,7 +129,6 @@ public class Prueba {
                     
                 //Menu de platos
                 case 6:
-                    auxiliar.ordenarLista(rotiseria.getListaPlatos());
                     auxiliar.mostrarContenido(rotiseria.getListaPlatos(), "Menu");
                     break;
                     
@@ -140,7 +139,7 @@ public class Prueba {
                     
                 //Consulta de tipo
                 case 8:
-                    auxiliar.consultaTipo();
+                    auxiliar.consultaTipo(rotiseria.getListaPedidos());
                     break;
                      
                 //Terminar

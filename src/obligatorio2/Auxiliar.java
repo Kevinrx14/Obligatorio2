@@ -198,6 +198,9 @@ public class Auxiliar {
         int i;
         
         if (!unaLista.isEmpty()) {
+            if (tipoLista.equals("Menu")) {
+                ordenarLista(unaLista);
+            }
             contadorLista = unaLista.size();
             System.out.println("******** " + tipoLista + " ********");
             for(i = 0; i < contadorLista; i++){
@@ -292,7 +295,7 @@ public class Auxiliar {
         }
     }
     
-    public void consultaTipo(){
+    public void consultaTipo(ArrayList<Pedido> unaLista){
         int indexTipo;
         int i;
         int[] tipo = new int[8];
