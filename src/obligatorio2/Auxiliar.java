@@ -302,11 +302,11 @@ public class Auxiliar {
         int mayor = 0;
         int largoLista;
         
-        if(!rotiseria.getListaPedidos().isEmpty()) {
-            largoLista = rotiseria.getListaPedidos().size();
+        if(!unaLista.isEmpty()) {
+            largoLista = unaLista.size();
             //Llenar el array tipo
             for(i = 0; i < largoLista; i++){
-                indexTipo = (rotiseria.getListaPedidos().get(i).getPlato().getTipo())-1;
+                indexTipo = (unaLista.get(i).getPlato().getTipo())-1;
                 tipo[indexTipo] += 1;
             }
             //Guardar el mas pedido
