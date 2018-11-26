@@ -16,33 +16,51 @@ public class Prueba {
         int indiceMensajero;
         boolean verificadorMenuPrincipal = true;
         
-        rotiseria.getListaClientes().add(new Cliente ("Kevin", "Bv Espana", 5));
-        rotiseria.getListaClientes().add(new Cliente ("Juan", "Bv Artigas", 2));
-        rotiseria.getListaClientes().add(new Cliente ("Pedro", "Chana", 1));
-        rotiseria.getListaClientes().add(new Cliente ("Juan", "Bv Artigas", 2));
-        rotiseria.getListaClientes().add(new Cliente ("Pedro", "Chana", 1));
-        rotiseria.getListaMensajeros().add(new Mensajero ("John Doe", "Chana", "12345678"));
-        rotiseria.getListaMensajeros().add(new Mensajero ("Jane Doe", "Bv Espana", "23456789"));
+        rotiseria.getListaClientes().add(new Cliente ("John", "Cuareim 123", 5));
+        rotiseria.getListaClientes().add(new Cliente ("Jane", "Mercedez 45", 5));
+        rotiseria.getListaClientes().add(new Cliente ("Juan", "Chana 201", 1));
+        rotiseria.getListaClientes().add(new Cliente ("Kevin", "Bv España 2400", 10));
+        rotiseria.getListaClientes().add(new Cliente ("Maria", "Bv Artigas 1423", 7));
+        rotiseria.getListaMensajeros().add(new Mensajero ("Pablo", "Guana 542", "23456789"));
+        rotiseria.getListaMensajeros().add(new Mensajero ("Javier", "Arenal Grande 72", "73251432"));
         rotiseria.getListaPlatos().add(new Plato ("Sopa", 50, 200, 5, true));
         rotiseria.getListaPlatos().add(new Plato ("HAMBURGUESA", 150, 874, 8, false));
         rotiseria.getListaPlatos().add(new Plato ("papas fritas", 74, 498, 1, true));
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(0),
-                            rotiseria.getListaClientes().get(0),
-                            11,
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(3),
+                            7,
                             12,
-                            rotiseria.getListaMensajeros().get(0))
+                            rotiseria.getListaMensajeros().get(1))
                     );
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
                             rotiseria.getListaClientes().get(1),
                             11,
-                            18,
-                            rotiseria.getListaMensajeros().get(0))
+                            8,
+                            rotiseria.getListaMensajeros().get(1))
                     );
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
                             rotiseria.getListaClientes().get(2),
                             11,                            
+                            12,
+                            rotiseria.getListaMensajeros().get(2))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(3),
+                            rotiseria.getListaClientes().get(3),
+                            1,
+                            18,
+                            rotiseria.getListaMensajeros().get(1))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(4),
+                            11,
+                            15,
+                            rotiseria.getListaMensajeros().get(2))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(5),
+                            31,                            
                             14,
-                            rotiseria.getListaMensajeros().get(0))
+                            rotiseria.getListaMensajeros().get(1))
                     );
         
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
