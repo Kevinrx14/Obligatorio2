@@ -438,7 +438,7 @@ public class Prueba {
                 }
         
                 ordenarLista(pedidosDelDia);
-            
+
                 mostrarContenido(pedidosDelDia, "Pedidos");
             } else {
                 System.out.println("No hay pedidos registrados");
