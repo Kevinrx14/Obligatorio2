@@ -10,11 +10,13 @@ public class Prueba {
         Pedido pedido = new Pedido();
         Cliente cliente = new Cliente();
         Plato plato = new Plato();
+        String ciMensajero;
         int opcionElegida;
         int indicePlato;
         int indiceCliente;
         int indiceMensajero;
         boolean verificadorMenuPrincipal = true;
+        boolean verificador = true;
         
         rotiseria.getListaClientes().add(new Cliente ("John", "Cuareim 123", 5));
         rotiseria.getListaClientes().add(new Cliente ("Jane", "Mercedez 45", 5));
@@ -101,9 +103,9 @@ public class Prueba {
                 //Registrar de cliente
                 case 1: {
                     System.out.println("Ingrese nombre del cliente");
-                    cliente.setNombre(ingresarTexto("nombreCliente"));
+                    cliente.setNombre(ingresarTexto());
                     System.out.println("Ingrese direccion del cliente");
-                    cliente.setDireccion(ingresarTexto("direccionCliente"));
+                    cliente.setDireccion(ingresarTexto());
                     System.out.println("Ingrese barrio del cliente (1 - 10)");
                     cliente.setBarrio(ingresarNumero("barrio"));
                     
@@ -114,11 +116,15 @@ public class Prueba {
                 //Registrar de mensajero
                 case 2:
                     System.out.println("Ingrese nombre del mensajero");
-                    mensajero.setNombre(ingresarTexto("nombreMensajero"));
+                    mensajero.setNombre(ingresarTexto());
                     System.out.println("Ingrese direccion del mensajero");
-                    mensajero.setDireccion(ingresarTexto("direccionMensajero"));
-                    System.out.println("Ingrese ci del mensajero");
-                    mensajero.setCi(ingresarTexto("ciMensajero"));
+                    mensajero.setDireccion(ingresarTexto());
+                    do {
+                        System.out.println("Ingrese ci del mensajero");
+                        ciMensajero = ingresarTexto();
+                        verificador = verificarCi(ciMensajero, rotiseria.getListaMensajeros());
+                    } while(!verificador);
+                    mensajero.setCi(ciMensajero);
                     
                     rotiseria.setMensajero(mensajero);
                     System.out.println("Mensajero ingresado" + "\n");
@@ -127,7 +133,7 @@ public class Prueba {
                 //Registrar de plato
                 case 3:
                     System.out.println("Ingrese plato");
-                    plato.setDescripcion(ingresarTexto("descripcionPlato"));
+                    plato.setDescripcion(ingresarTexto());
                     System.out.println("Ingrese el costo del plato");
                     plato.setCosto(ingresarNumero("costo"));
                     System.out.println("Ingrese las calorias del plato (1 - 900)");
@@ -209,7 +215,7 @@ public class Prueba {
     }
     
     //Metodo para ingresar texto
-    public static String ingresarTexto(String aIngresar) {
+    public static String ingresarTexto() {
         Scanner input = new Scanner(System.in);
         String datoIngresado;
         boolean verificador;
@@ -222,27 +228,6 @@ public class Prueba {
             if (datoIngresado.isEmpty()) {
                 System.out.println("Por favor ingrese un texto");
                 verificador = false;
-            }
-            
-            if(aIngresar.equals("ciMensajero")) {
-                //Filtro que la CI contenga solo numeros
-                boolean caracteresNumericos = true;
-                for(int i = 0; i < datoIngresado.length(); i++) {
-                    char caracter = datoIngresado.charAt(i);
-                    if(!Character.isDigit(caracter)) {
-                        caracteresNumericos = false;
-                    }
-                }
-                if(caracteresNumericos) {
-                    //Filtro que la CI contenga 8 caracteres
-                    if(datoIngresado.length() != 8) {
-                        System.out.println("La C.I. ingresada no contiene 8 digitos");
-                        verificador = false;
-                    }   
-                } else {
-                    System.out.println("La C.I. contiene caracteres que no son numericos");
-                    verificador = false;
-                }
             }
         } while (verificador == false);        
 
@@ -558,5 +543,40 @@ public class Prueba {
     public static ArrayList ordenarLista(ArrayList unaLista) {
         Collections.sort(unaLista);
         return unaLista;
+    }
+    
+    public static boolean verificarCi(String unaCi, ArrayList<Mensajero> listaMensajeros) {
+        boolean ciValida = true;
+        boolean caracteresNumericos = true;
+        
+            //Filtro que la CI contenga solo numeros
+            for(int i = 0; i < unaCi.length(); i++) {
+                char caracter = unaCi.charAt(i);
+                if(!Character.isDigit(caracter)) {
+                    caracteresNumericos = false;
+                }
+            }
+            if(caracteresNumericos) {
+                //Filtro que la CI contenga 8 caracteres
+                if(unaCi.length() != 8) {
+                    System.out.println("La C.I. ingresada no contiene 8 digitos");
+                    ciValida = false;
+                }
+                if(ciValida) {
+                    for(int i = 0; i < listaMensajeros.size(); i++) {
+                        String ciMensajero = listaMensajeros.get(i).getCi();
+                        ciMensajero = ciMensajero.replace(".", "");
+                        ciMensajero = ciMensajero.replace("-", "");
+                        if(unaCi.equals(ciMensajero)) {
+                            System.out.println("La C.I. ya existe");
+                            ciValida = false;
+                        }
+                    }
+                }
+            } else {
+                System.out.println("La C.I. contiene caracteres que no son numericos");
+                ciValida = false;
+            }
+        return ciValida;
     }
 }
