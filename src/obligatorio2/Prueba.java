@@ -243,14 +243,14 @@ public class Prueba {
         do {
             verificador = true;
             
+            //Si el dato ingresado no es un int entra en la exception, 
+            //muestra el mensaje de error y la variable se setea en 0
             try {
                 datoIngresado = input.nextInt();
-                input.nextLine();
-            } //Si el dato ingresado no es un int entra en la exception, 
-            //muestra el mensaje de error y la variable se setea en 0
-            catch (InputMismatchException exception) {
+            } catch (InputMismatchException exception) {
                 System.out.println("El valor ingresado no es numerico");
                 datoIngresado = 0;
+                input.nextLine();
             }
             
             switch (aIngresar) {
