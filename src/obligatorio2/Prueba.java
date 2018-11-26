@@ -10,58 +10,13 @@ public class Prueba {
         Pedido pedido = new Pedido();
         Cliente cliente = new Cliente();
         Plato plato = new Plato();
+        String ciMensajero;
         int opcionElegida;
         int indicePlato;
         int indiceCliente;
         int indiceMensajero;
         boolean verificadorMenuPrincipal = true;
-        
-        rotiseria.getListaClientes().add(new Cliente ("John", "Cuareim 123", 5));
-        rotiseria.getListaClientes().add(new Cliente ("Jane", "Mercedez 45", 5));
-        rotiseria.getListaClientes().add(new Cliente ("Juan", "Chana 201", 1));
-        rotiseria.getListaClientes().add(new Cliente ("Kevin", "Bv España 2400", 10));
-        rotiseria.getListaClientes().add(new Cliente ("Maria", "Bv Artigas 1423", 7));
-        rotiseria.getListaMensajeros().add(new Mensajero ("Pablo", "Guana 542", "23456789"));
-        rotiseria.getListaMensajeros().add(new Mensajero ("Javier", "Arenal Grande 72", "73251432"));
-        rotiseria.getListaPlatos().add(new Plato ("Sopa", 50, 200, 5, true));
-        rotiseria.getListaPlatos().add(new Plato ("HAMBURGUESA", 150, 874, 8, false));
-        rotiseria.getListaPlatos().add(new Plato ("papas fritas", 74, 498, 1, true));
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
-                            rotiseria.getListaClientes().get(3),
-                            7,
-                            12,
-                            rotiseria.getListaMensajeros().get(1))
-                    );
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
-                            rotiseria.getListaClientes().get(1),
-                            11,
-                            8,
-                            rotiseria.getListaMensajeros().get(1))
-                    );
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
-                            rotiseria.getListaClientes().get(2),
-                            11,                            
-                            12,
-                            rotiseria.getListaMensajeros().get(2))
-                    );
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(3),
-                            rotiseria.getListaClientes().get(3),
-                            1,
-                            18,
-                            rotiseria.getListaMensajeros().get(1))
-                    );
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
-                            rotiseria.getListaClientes().get(4),
-                            11,
-                            15,
-                            rotiseria.getListaMensajeros().get(2))
-                    );
-        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
-                            rotiseria.getListaClientes().get(5),
-                            31,                            
-                            14,
-                            rotiseria.getListaMensajeros().get(1))
-                    );
+        boolean verificador = true;
         
         //Un Do para siempre estar en el menu hasta seleccionar la opcion salir
         do {
@@ -87,8 +42,12 @@ public class Prueba {
                     mensajero.setNombre(ingresarTexto());
                     System.out.println("Ingrese direccion del mensajero");
                     mensajero.setDireccion(ingresarTexto());
-                    System.out.println("Ingrese ci del mensajero");
-                    mensajero.setCi(ingresarTexto());
+                    do {
+                        System.out.println("Ingrese ci del mensajero");
+                        ciMensajero = ingresarTexto();
+                        verificador = verificarCi(ciMensajero, rotiseria.getListaMensajeros());
+                    } while(!verificador);
+                    mensajero.setCi(ciMensajero);
                     
                     rotiseria.setMensajero(mensajero);
                     System.out.println("Mensajero ingresado" + "\n");
@@ -141,21 +100,25 @@ public class Prueba {
                     break;
 
                 //Consulta pedidos
+                //Se ingresa un día y indica cuál/cuáles fueron los platos más pedidos en ese día.
                 case 5:
                     mostrarPlatoMasPedido(rotiseria);
                     break;
                     
                 //Menu de platos
+                //Muestra la lista de platos ordenada por código
                 case 6:
                     mostrarContenido(rotiseria.getListaPlatos(), "Menu");
                     break;
                     
                 //Planilla de envio
+                //Se elige el mensajero y se indica un día. Se emite su lista de pedidos de ese día, ordenada por número de barrio
                 case 7:
                     mostrarPlanillaEnvio(rotiseria);
                     break;
                     
                 //Consulta de tipo
+                //Cuál/es es el tipo de plato que tiene más pedidos.
                 case 8:
                     consultaTipo(rotiseria.getListaPedidos());
                     break;
@@ -171,7 +134,7 @@ public class Prueba {
                     System.out.println("\n");
                     break;
             }
-        } while (verificadorMenuPrincipal == true);
+        } while (verificadorMenuPrincipal);
     }
     
     //Metodo para ingresar texto
@@ -203,14 +166,14 @@ public class Prueba {
         do {
             verificador = true;
             
+            //Si el dato ingresado no es un int entra en la exception, 
+            //muestra el mensaje de error y la variable se setea en 0
             try {
                 datoIngresado = input.nextInt();
-                input.nextLine();
-            } //Si el dato ingresado no es un int entra en la exception, 
-            //muestra el mensaje de error y la variable se setea en 0
-            catch (InputMismatchException exception) {
+            } catch (InputMismatchException exception) {
                 System.out.println("El valor ingresado no es numerico");
                 datoIngresado = 0;
+                input.nextLine();
             }
             
             switch (aIngresar) {
@@ -404,7 +367,7 @@ public class Prueba {
                 }
         
                 ordenarLista(pedidosDelDia);
-            
+
                 mostrarContenido(pedidosDelDia, "Pedidos");
             } else {
                 System.out.println("No hay pedidos registrados");
@@ -447,17 +410,22 @@ public class Prueba {
                     masPedido = sumaDePedidos;
                 } else {
                     if (sumaDePedidos == masPedido) {
-                        indicesMasPedidos.add(i);
+                        if(masPedido > 0) {
+                            indicesMasPedidos.add(i);
+                        }
                     }
                 }
                 sumaDePedidos = 0;
             }
 
-            System.out.println("El plato/s mas pedido/s el dia " + diaPedido + " es/son:");
-            for (i = 0; i < indicesMasPedidos.size(); i++) {
-                System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)));
+            if(!indicesMasPedidos.isEmpty()) {
+                System.out.println("El plato/s mas pedido/s el dia " + diaPedido + " es/son:");
+                for (i = 0; i < indicesMasPedidos.size(); i++) {
+                    System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
+                }
+            } else {
+                System.out.println("No hay pedidos el dia " + diaPedido);
             }
-
         } else {
             System.out.println("No se han realizado pedidos");
         }
@@ -471,6 +439,7 @@ public class Prueba {
         int largoLista;
         
         if(!unaLista.isEmpty()) {
+            ordenarLista(unaLista);
             largoLista = unaLista.size();
             //Llenar el array tipo
             for(i = 0; i < largoLista; i++){
@@ -497,5 +466,40 @@ public class Prueba {
     public static ArrayList ordenarLista(ArrayList unaLista) {
         Collections.sort(unaLista);
         return unaLista;
+    }
+    
+    public static boolean verificarCi(String unaCi, ArrayList<Mensajero> listaMensajeros) {
+        boolean ciValida = true;
+        boolean caracteresNumericos = true;
+        
+            //Filtro que la CI contenga solo numeros
+            for(int i = 0; i < unaCi.length(); i++) {
+                char caracter = unaCi.charAt(i);
+                if(!Character.isDigit(caracter)) {
+                    caracteresNumericos = false;
+                }
+            }
+            if(caracteresNumericos) {
+                //Filtro que la CI contenga 8 caracteres
+                if(unaCi.length() != 8) {
+                    System.out.println("La C.I. ingresada no contiene 8 digitos");
+                    ciValida = false;
+                }
+                if(ciValida) {
+                    for(int i = 0; i < listaMensajeros.size(); i++) {
+                        String ciMensajero = listaMensajeros.get(i).getCi();
+                        ciMensajero = ciMensajero.replace(".", "");
+                        ciMensajero = ciMensajero.replace("-", "");
+                        if(unaCi.equals(ciMensajero)) {
+                            System.out.println("La C.I. ya existe");
+                            ciValida = false;
+                        }
+                    }
+                }
+            } else {
+                System.out.println("La C.I. contiene caracteres que no son numericos");
+                ciValida = false;
+            }
+        return ciValida;
     }
 }
