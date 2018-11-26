@@ -101,9 +101,9 @@ public class Prueba {
                 //Registrar de cliente
                 case 1: {
                     System.out.println("Ingrese nombre del cliente");
-                    cliente.setNombre(ingresarTexto());
+                    cliente.setNombre(ingresarTexto("nombreCliente"));
                     System.out.println("Ingrese direccion del cliente");
-                    cliente.setDireccion(ingresarTexto());
+                    cliente.setDireccion(ingresarTexto("direccionCliente"));
                     System.out.println("Ingrese barrio del cliente (1 - 10)");
                     cliente.setBarrio(ingresarNumero("barrio"));
                     
@@ -114,11 +114,11 @@ public class Prueba {
                 //Registrar de mensajero
                 case 2:
                     System.out.println("Ingrese nombre del mensajero");
-                    mensajero.setNombre(ingresarTexto());
+                    mensajero.setNombre(ingresarTexto("nombreMensajero"));
                     System.out.println("Ingrese direccion del mensajero");
-                    mensajero.setDireccion(ingresarTexto());
+                    mensajero.setDireccion(ingresarTexto("direccionMensajero"));
                     System.out.println("Ingrese ci del mensajero");
-                    mensajero.setCi(ingresarTexto());
+                    mensajero.setCi(ingresarTexto("ciMensajero"));
                     
                     rotiseria.setMensajero(mensajero);
                     System.out.println("Mensajero ingresado" + "\n");
@@ -127,7 +127,7 @@ public class Prueba {
                 //Registrar de plato
                 case 3:
                     System.out.println("Ingrese plato");
-                    plato.setDescripcion(ingresarTexto());
+                    plato.setDescripcion(ingresarTexto("descripcionPlato"));
                     System.out.println("Ingrese el costo del plato");
                     plato.setCosto(ingresarNumero("costo"));
                     System.out.println("Ingrese las calorias del plato (1 - 900)");
@@ -209,7 +209,7 @@ public class Prueba {
     }
     
     //Metodo para ingresar texto
-    public static String ingresarTexto() {
+    public static String ingresarTexto(String aIngresar) {
         Scanner input = new Scanner(System.in);
         String datoIngresado;
         boolean verificador;
@@ -222,6 +222,27 @@ public class Prueba {
             if (datoIngresado.isEmpty()) {
                 System.out.println("Por favor ingrese un texto");
                 verificador = false;
+            }
+            
+            if(aIngresar.equals("ciMensajero")) {
+                //Filtro que la CI contenga solo numeros
+                boolean caracteresNumericos = true;
+                for(int i = 0; i < datoIngresado.length(); i++) {
+                    char caracter = datoIngresado.charAt(i);
+                    if(!Character.isDigit(caracter)) {
+                        caracteresNumericos = false;
+                    }
+                }
+                if(caracteresNumericos) {
+                    //Filtro que la CI contenga 8 caracteres
+                    if(datoIngresado.length() != 8) {
+                        System.out.println("La C.I. ingresada no contiene 8 digitos");
+                        verificador = false;
+                    }   
+                } else {
+                    System.out.println("La C.I. contiene caracteres que no son numericos");
+                    verificador = false;
+                }
             }
         } while (verificador == false);        
 
