@@ -171,21 +171,25 @@ public class Prueba {
                     break;
 
                 //Consulta pedidos
+                //Se ingresa un día y indica cuál/cuáles fueron los platos más pedidos en ese día.
                 case 5:
                     mostrarPlatoMasPedido(rotiseria);
                     break;
                     
                 //Menu de platos
+                //Muestra la lista de platos ordenada por código
                 case 6:
                     mostrarContenido(rotiseria.getListaPlatos(), "Menu");
                     break;
                     
                 //Planilla de envio
+                //Se elige el mensajero y se indica un día. Se emite su lista de pedidos de ese día, ordenada por número de barrio
                 case 7:
                     mostrarPlanillaEnvio(rotiseria);
                     break;
                     
                 //Consulta de tipo
+                //Cuál/es es el tipo de plato que tiene más pedidos.
                 case 8:
                     consultaTipo(rotiseria.getListaPedidos());
                     break;
