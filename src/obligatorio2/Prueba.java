@@ -477,17 +477,22 @@ public class Prueba {
                     masPedido = sumaDePedidos;
                 } else {
                     if (sumaDePedidos == masPedido) {
-                        indicesMasPedidos.add(i);
+                        if(masPedido > 0) {
+                            indicesMasPedidos.add(i);
+                        }
                     }
                 }
                 sumaDePedidos = 0;
             }
 
-            System.out.println("El plato/s mas pedido/s el dia " + diaPedido + " es/son:");
-            for (i = 0; i < indicesMasPedidos.size(); i++) {
-                System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
+            if(!indicesMasPedidos.isEmpty()) {
+                System.out.println("El plato/s mas pedido/s el dia " + diaPedido + " es/son:");
+                for (i = 0; i < indicesMasPedidos.size(); i++) {
+                    System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
+                }
+            } else {
+                System.out.println("No hay pedidos el dia " + diaPedido);
             }
-
         } else {
             System.out.println("No se han realizado pedidos");
         }
