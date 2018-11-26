@@ -46,7 +46,7 @@ public class Prueba {
                     );
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
                             rotiseria.getListaClientes().get(2),
-                            1,
+                            7,
                             18,
                             rotiseria.getListaMensajeros().get(0))
                     );
@@ -55,6 +55,36 @@ public class Prueba {
                             11,
                             15,
                             rotiseria.getListaMensajeros().get(1))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
+                            rotiseria.getListaClientes().get(4),
+                            31,                            
+                            14,
+                            rotiseria.getListaMensajeros().get(0))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(4),
+                            31,                            
+                            14,
+                            rotiseria.getListaMensajeros().get(0))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(4),
+                            31,                            
+                            14,
+                            rotiseria.getListaMensajeros().get(0))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(4),
+                            31,                            
+                            14,
+                            rotiseria.getListaMensajeros().get(0))
+                    );
+        rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(2),
+                            rotiseria.getListaClientes().get(4),
+                            31,                            
+                            14,
+                            rotiseria.getListaMensajeros().get(0))
                     );
         rotiseria.getListaPedidos().add(new Pedido(rotiseria.getListaPlatos().get(1),
                             rotiseria.getListaClientes().get(4),
@@ -455,7 +485,7 @@ public class Prueba {
 
             System.out.println("El plato/s mas pedido/s el dia " + diaPedido + " es/son:");
             for (i = 0; i < indicesMasPedidos.size(); i++) {
-                System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)));
+                System.out.println(rotiseria.getListaPlatos().get(indicesMasPedidos.get(i)) + "\n");
             }
 
         } else {
@@ -471,6 +501,7 @@ public class Prueba {
         int largoLista;
         
         if(!unaLista.isEmpty()) {
+            ordenarLista(unaLista);
             largoLista = unaLista.size();
             //Llenar el array tipo
             for(i = 0; i < largoLista; i++){
