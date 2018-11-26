@@ -205,7 +205,7 @@ public class Prueba {
                     System.out.println("\n");
                     break;
             }
-        } while (verificadorMenuPrincipal == true);
+        } while (verificadorMenuPrincipal);
     }
     
     //Metodo para ingresar texto
